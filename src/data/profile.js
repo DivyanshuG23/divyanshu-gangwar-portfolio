@@ -1,0 +1,157 @@
+/**
+ * Verified Developer Profile & Education Data
+ * All information strictly reflects confirmed user details without invented claims,
+ * fake metrics, client counts, or arbitrary percentage ratings.
+ */
+
+export const PROFILE_DATA = {
+  name: 'Divyanshu Gangwar',
+  headline: 'Building Intelligent Digital Experiences.',
+  careerGoal: 'AI + Full-Stack Developer',
+  targetRoles: [
+    'Frontend Developer',
+    'React Developer',
+    'MERN Stack Developer',
+    'Backend Developer',
+    'Full-Stack Web Developer',
+    'AI-focused Application Development',
+  ],
+  heroFocusTags: [
+    'AI + Full-Stack',
+    'React.js',
+    'MERN Stack',
+    'Backend APIs',
+  ],
+  heroTitles: [
+    'AI + Full-Stack Developer',
+    'Frontend & React Developer',
+    'MERN Stack Developer',
+    'Backend Developer',
+    'Full-Stack Web Developer',
+  ],
+  bio: 'Final-year Computer Science & Engineering student at Invertis University focused on modern full-stack web development and working toward building intelligent, AI-powered applications.',
+  about: {
+    title: 'About Me',
+    paragraphs: [
+      "I'm Divyanshu Gangwar, a final-year B.Tech Computer Science and Engineering student at Invertis University, with a strong interest in building modern, responsive, and meaningful web applications.",
+      "My journey in web development is driven by the excitement of turning ideas into real digital experiences. I have worked with HTML, CSS, JavaScript, React.js, Node.js, Express.js, MongoDB, and MySQL to build full-stack projects, exploring both the user-facing side of applications and the backend systems that power them.",
+      "Through projects involving workflow automation, AI-powered resume analysis, URL shortening, and expense management, I've been developing my understanding of application architecture, REST APIs, authentication, and database integration. I enjoy learning by building, solving practical development challenges, and continuously improving the quality of my work.",
+      "My long-term goal is to grow as an AI + Full-Stack Developer, combining strong web development fundamentals with intelligent features to create useful, reliable, and user-focused applications. I'm eager to contribute to real-world projects, learn from experienced developers, and keep turning ideas into working solutions.",
+    ],
+    status: 'Open to jobs and internships.',
+  },
+  // Set to image path (e.g., '/profile.jpg' placed in the public/ folder) when ready to display real photo
+  photo: null,
+  education: {
+    degree: 'B.Tech in Computer Science & Engineering',
+    institution: 'Invertis University',
+    timeline: 'Expected Graduation 2027',
+    focus: 'Computer Science & Full-Stack Web Development',
+    primary: {
+      degree: 'Bachelor of Technology (B.Tech.)',
+      branch: 'Computer Science and Engineering',
+      institution: 'Invertis University',
+      location: 'Bareilly, Uttar Pradesh, India',
+      duration: '2023–2027',
+      status: 'Expected Graduation 2027',
+      cgpa: '8.6/10',
+      description:
+        'Four-year comprehensive engineering program balancing algorithmic foundations, low-level systems computation, relational database management, and hands-on software development principles.',
+    },
+    history: [
+      {
+        id: 'edu-class-xii',
+        qualification: 'Class XII',
+        level: 'Senior Secondary',
+        institution: 'SVM Inter College',
+        location: 'Tilhar, Shahjahanpur, Uttar Pradesh',
+        board: 'UP Board',
+        year: '2023',
+        scoreLabel: 'Percentage',
+        score: '90.4%',
+        distinction: null,
+      },
+      {
+        id: 'edu-class-x',
+        qualification: 'Class X',
+        level: 'Secondary Education',
+        institution: 'SVM Inter College',
+        location: 'Tilhar, Shahjahanpur, Uttar Pradesh',
+        board: 'UP Board',
+        year: null,
+        scoreLabel: 'Percentage',
+        score: '90.8%',
+        distinction: 'Secured 8th rank in the district in the Class X board examination.',
+      },
+    ],
+  },
+  roles: [
+    'AI + Full-Stack Developer',
+    'Frontend & React Developer',
+    'MERN Stack Developer',
+    'Backend Developer',
+    'Full-Stack Web Developer',
+  ],
+  availability: 'Open to jobs and internships only',
+  skills: [
+    {
+      id: 'frontend',
+      category: 'Frontend Engineering',
+      tagline: 'Client Architecture & UI',
+      description: 'Building responsive, reactive, and modular web interfaces',
+      items: [
+        { name: 'React.js', tag: 'UI Library', logo: 'ReactLogo' },
+        { name: 'JavaScript (ES6+)', tag: 'Core Language', logo: 'JavaScriptLogo' },
+        { name: 'HTML5', tag: 'Semantic Markup', logo: 'Html5Logo' },
+        { name: 'CSS3', tag: 'Modern Styling', logo: 'Css3Logo' },
+        { name: 'Tailwind CSS', tag: 'Utility-First CSS', logo: 'TailwindLogo' },
+        { name: 'Bootstrap', tag: 'Responsive Grid', logo: 'BootstrapLogo' },
+        { name: 'Responsive Web Design', tag: 'Cross-Device UI', logo: 'ResponsiveLogo' },
+      ],
+    },
+    {
+      id: 'backend',
+      category: 'Backend & APIs',
+      tagline: 'Server & Protocol Engineering',
+      description: 'Server architectures, scalable endpoints, and pipeline logic',
+      items: [
+        { name: 'Node.js', tag: 'Runtime Environment', logo: 'NodeLogo' },
+        { name: 'Express.js', tag: 'Backend Framework', logo: 'ExpressLogo' },
+        { name: 'REST APIs', tag: 'Service Endpoints', logo: 'RestApiLogo' },
+        { name: 'MVC Architecture', tag: 'System Pattern', logo: 'MvcLogo' },
+        { name: 'Middleware', tag: 'Request Processing', logo: 'MiddlewareLogo' },
+      ],
+    },
+    {
+      id: 'database-tools',
+      category: 'Database & Tools',
+      tagline: 'Persistence & Version Control',
+      description: 'Data persistence, schema design, version control, and development utilities',
+      items: [
+        { name: 'MongoDB', tag: 'Document Database', logo: 'MongoLogo' },
+        { name: 'MySQL', tag: 'Relational Database', logo: 'MySqlLogo' },
+        { name: 'Git', tag: 'Version Control', logo: 'GitLogo' },
+        { name: 'GitHub', tag: 'Code Collaboration', logo: 'GitHubLogo' },
+        { name: 'Postman', tag: 'API Testing & Debug', logo: 'PostmanLogo' },
+        { name: 'JWT', tag: 'Token Authentication', logo: 'JwtLogo' },
+        { name: 'bcrypt', tag: 'Password Hashing', logo: 'BcryptLogo' },
+      ],
+    },
+    {
+      id: 'foundations',
+      category: 'Programming Foundations',
+      tagline: 'Computational Core',
+      description: 'Foundational programming principles and computational analysis',
+      items: [
+        { name: 'Java', tag: 'OOP & Systems', logo: 'JavaLogo' },
+        { name: 'Python', tag: 'Computational Logic', logo: 'PythonLogo' },
+        { name: 'Data Structures & Algorithms (DSA)', tag: 'Algorithmic Core', logo: 'DsaLogo' },
+      ],
+    },
+  ],
+  email: 'divyanshugangwar663@gmail.com',
+  socials: {
+    github: 'https://github.com/DivyanshuG23',
+    linkedin: 'https://www.linkedin.com/in/divyanshu-gangwar-831bb6346/',
+  },
+};
