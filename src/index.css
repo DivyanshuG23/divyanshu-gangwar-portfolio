@@ -1,0 +1,843 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Space Grotesk", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --font-editorial: "Manrope", system-ui, sans-serif;
+
+  --color-canvas: #090909;
+  --color-canvas-subtle: #0d0f13;
+  --color-panel: #111317;
+  --color-line: #1f222a;
+  --color-line-hover: #2a2e38;
+  --color-fg: #f4f5f0;
+  --color-muted: #8a8f98;
+  --color-muted-dim: #5c6068;
+}
+
+:root {
+  --bg: #090909;
+  --bg-2: #0d0f13;
+  --panel: #111317;
+  --line: #1f222a;
+  --line-2: #2a2e38;
+  --fg: #f4f5f0;
+  --muted: #8a8f98;
+  --muted-2: #5c6068;
+  
+  --font-sans: "Space Grotesk", system-ui, sans-serif;
+  --font-editorial: "Manrope", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+}
+
+html {
+  background-color: #090909;
+  color: #f4f5f0;
+  font-family: "Space Grotesk", system-ui, sans-serif;
+  scroll-behavior: smooth;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  min-height: 100dvh;
+  margin: 0;
+  padding: 0;
+  background-color: #090909;
+  color: #f4f5f0;
+  overflow-x: hidden;
+}
+
+/* Subtle pulse dot animation with case-by-case reduced motion handling */
+@keyframes calm-pulse {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.4);
+  }
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 6px rgba(74, 222, 128, 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(74, 222, 128, 0);
+  }
+}
+
+.pulse-indicator {
+  animation: calm-pulse 2.8s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pulse-indicator {
+    animation: none;
+    opacity: 0.8;
+  }
+}
+
+/* Permanent Animated Champagne-Gold Border Streak */
+@keyframes border-streak-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.champagne-border-streak {
+  position: absolute;
+  top: -150%;
+  left: -150%;
+  width: 400%;
+  height: 400%;
+  background: conic-gradient(
+    from 0deg at 50% 50%,
+    transparent 0deg,
+    transparent 280deg,
+    rgba(212, 175, 55, 0.08) 305deg,
+    rgba(229, 201, 126, 0.45) 325deg,
+    rgba(247, 235, 206, 0.95) 345deg,
+    rgba(255, 255, 255, 0.95) 352deg,
+    transparent 360deg
+  );
+  animation: border-streak-spin 7.5s linear infinite;
+  pointer-events: none;
+  will-change: transform;
+}
+
+/* Accessible reduced motion support: retains a clean static champagne-gold highlight border */
+.motion-reduce .champagne-border-streak,
+[data-reduced-motion="true"] .champagne-border-streak {
+  animation: none;
+  transform: rotate(45deg);
+  opacity: 0.6;
+}
+
+/* Technical Circuit Flow Animation */
+@keyframes circuit-flow {
+  0% {
+    stroke-dashoffset: 400;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+.animate-circuit-flow {
+  stroke-dasharray: 20 80;
+  animation: circuit-flow 8s linear infinite;
+}
+
+/* Subtle Slow Technical Radar / Wireframe Rotation */
+@keyframes technical-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-tech-spin {
+  animation: technical-spin 40s linear infinite;
+  transform-origin: center;
+}
+
+.animate-tech-spin-reverse {
+  animation: technical-spin 55s linear infinite reverse;
+  transform-origin: center;
+}
+
+/* Technical Pulse Node */
+@keyframes tech-node-glow {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(0.9);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.15);
+  }
+}
+
+.animate-tech-node {
+  animation: tech-node-glow 3.5s ease-in-out infinite;
+}
+
+/* Motion OFF overrides for all cinematic effects */
+.motion-reduce .animate-circuit-flow,
+[data-reduced-motion="true"] .animate-circuit-flow,
+.motion-reduce .animate-tech-spin,
+[data-reduced-motion="true"] .animate-tech-spin,
+.motion-reduce .animate-tech-spin-reverse,
+[data-reduced-motion="true"] .animate-tech-spin-reverse,
+.motion-reduce .animate-tech-node,
+[data-reduced-motion="true"] .animate-tech-node {
+  animation: none !important;
+  transform: none !important;
+}
+
+/* Card Light Sweep & Surface Reflection on Entrance */
+@keyframes card-light-sweep {
+  0% {
+    transform: translateX(-150%) skewX(-25deg);
+    opacity: 0;
+  }
+  25% {
+    opacity: 0.65;
+  }
+  75% {
+    opacity: 0.65;
+  }
+  100% {
+    transform: translateX(250%) skewX(-25deg);
+    opacity: 0;
+  }
+}
+
+.animate-card-light-sweep {
+  animation: card-light-sweep 1.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* 3D Scroll-Reveal Card Perspectives */
+.card-3d-entrance-hidden {
+  opacity: 0;
+  transform: perspective(1000px) translateY(28px) rotateX(6deg) scale(0.97);
+}
+
+.card-3d-entrance-visible {
+  opacity: 1;
+  transform: perspective(1000px) translateY(0) rotateX(0deg) scale(1);
+  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Motion OFF overrides for 3D card entrances and light sweeps */
+.motion-reduce .animate-card-light-sweep,
+[data-reduced-motion="true"] .animate-card-light-sweep {
+  animation: none !important;
+  display: none !important;
+}
+
+.motion-reduce .card-3d-entrance-hidden,
+[data-reduced-motion="true"] .card-3d-entrance-hidden,
+.motion-reduce .card-3d-entrance-visible,
+[data-reduced-motion="true"] .card-3d-entrance-visible {
+  opacity: 1 !important;
+  transform: none !important;
+  transition: none !important;
+}
+
+/* ==========================================================================
+   Education 3D Directional Assembly Entrance System
+   ========================================================================== */
+
+.edu-card-assembly-wrapper {
+  perspective: 1200px;
+  will-change: transform, opacity;
+  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Card 1 (Class 10): Trajectory from Left with 3D Y/Z rotation */
+.edu-card-assembly-hidden-1 {
+  opacity: 0;
+  transform: perspective(1200px) translateX(-70px) translateY(16px) rotateY(16deg) rotateZ(-2deg) scale(0.92);
+  transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+}
+
+/* Card 2 (Class 12): Trajectory from Upper-Right with downward diagonal approach */
+.edu-card-assembly-hidden-2 {
+  opacity: 0;
+  transform: perspective(1200px) translateX(50px) translateY(-60px) rotateX(-14deg) rotateY(-10deg) scale(0.91);
+  transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+}
+
+/* Card 3 (B.Tech CSE): Trajectory from Lower-Right with upward diagonal surge */
+.edu-card-assembly-hidden-3 {
+  opacity: 0;
+  transform: perspective(1200px) translateX(45px) translateY(65px) rotateX(14deg) rotateY(12deg) rotateZ(2.5deg) scale(0.91);
+  transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+}
+
+/* Common Assembled / Settled State */
+.edu-card-assembly-visible {
+  opacity: 1;
+  transform: perspective(1200px) translateX(0) translateY(0) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(1);
+  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Tablet & Mobile Stacked Layout Trajectories (< 1024px) */
+@media (max-width: 1023px) {
+  .edu-card-assembly-wrapper {
+    perspective: 1000px;
+  }
+
+  /* Card 1 (Class 10): Noticeable entrance from Left with 3D Y/Z rotation */
+  .edu-card-assembly-hidden-1 {
+    transform: perspective(1000px) translateX(-36px) translateY(12px) rotateY(12deg) rotateZ(-1.5deg) scale(0.93);
+    transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+  }
+
+  /* Card 2 (Class 12): Diagonal descent from Upper-Right quadrant */
+  .edu-card-assembly-hidden-2 {
+    transform: perspective(1000px) translateX(30px) translateY(-36px) rotateX(-10deg) rotateY(-8deg) scale(0.93);
+    transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+  }
+
+  /* Card 3 (B.Tech CSE): Upward/diagonal surge from Lower-Right quadrant */
+  .edu-card-assembly-hidden-3 {
+    transform: perspective(1000px) translateX(26px) translateY(40px) rotateX(10deg) rotateY(8deg) rotateZ(1.5deg) scale(0.93);
+    transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+  }
+}
+
+/* Compact Mobile tuning (< 380px, e.g. 320px - 375px) */
+@media (max-width: 380px) {
+  .edu-card-assembly-hidden-1 {
+    transform: perspective(800px) translateX(-24px) translateY(10px) rotateY(10deg) scale(0.94);
+  }
+  .edu-card-assembly-hidden-2 {
+    transform: perspective(800px) translateX(22px) translateY(-28px) rotateX(-8deg) scale(0.94);
+  }
+  .edu-card-assembly-hidden-3 {
+    transform: perspective(800px) translateX(20px) translateY(32px) rotateX(8deg) scale(0.94);
+  }
+}
+
+/* Motion OFF overrides for Education assembly */
+.motion-reduce .edu-card-assembly-wrapper,
+[data-reduced-motion="true"] .edu-card-assembly-wrapper,
+.motion-reduce .edu-card-assembly-hidden-1,
+[data-reduced-motion="true"] .edu-card-assembly-hidden-1,
+.motion-reduce .edu-card-assembly-hidden-2,
+[data-reduced-motion="true"] .edu-card-assembly-hidden-2,
+.motion-reduce .edu-card-assembly-hidden-3,
+[data-reduced-motion="true"] .edu-card-assembly-hidden-3,
+.motion-reduce .edu-card-assembly-visible,
+[data-reduced-motion="true"] .edu-card-assembly-visible {
+  opacity: 1 !important;
+  transform: none !important;
+  transition: none !important;
+}
+
+/* ==========================================================================
+   Skills 6-Card 3D Directional Assembly Entrance System
+   ========================================================================== */
+
+.skills-card-assembly-wrapper {
+  perspective: 1200px;
+  will-change: transform, opacity;
+  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Card 1: Far Left with subtle Y-axis rotation */
+.skills-card-assembly-hidden-1 {
+  opacity: 0;
+  transform: perspective(1200px) translateX(-68px) translateY(12px) rotateY(16deg) scale(0.92);
+  transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+}
+
+/* Card 2: Upper-Right with X/Y perspective rotation */
+.skills-card-assembly-hidden-2 {
+  opacity: 0;
+  transform: perspective(1200px) translateX(46px) translateY(-54px) rotateX(-14deg) rotateY(-8deg) scale(0.92);
+  transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+}
+
+/* Card 3: Lower-Left with restrained diagonal movement */
+.skills-card-assembly-hidden-3 {
+  opacity: 0;
+  transform: perspective(1200px) translateX(-48px) translateY(50px) rotateX(12deg) rotateY(12deg) scale(0.92);
+  transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+}
+
+/* Card 4: Upper-Left with a different 3D angle */
+.skills-card-assembly-hidden-4 {
+  opacity: 0;
+  transform: perspective(1200px) translateX(-44px) translateY(-50px) rotateX(-12deg) rotateY(12deg) scale(0.92);
+  transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+}
+
+/* Card 5: Lower-Right with upward diagonal movement */
+.skills-card-assembly-hidden-5 {
+  opacity: 0;
+  transform: perspective(1200px) translateX(42px) translateY(56px) rotateX(14deg) rotateY(10deg) scale(0.92);
+  transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+}
+
+/* Card 6: Right with subtle depth-based approach */
+.skills-card-assembly-hidden-6 {
+  opacity: 0;
+  transform: perspective(1200px) translateX(64px) translateY(-10px) rotateY(-16deg) scale(0.92);
+  transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+}
+
+/* Common Assembled / Settled State */
+.skills-card-assembly-visible {
+  opacity: 1;
+  transform: perspective(1200px) translateX(0) translateY(0) rotateX(0deg) rotateY(0deg) scale(1);
+  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Tablet & Mobile Stacked Layout Trajectories (< 1024px) */
+@media (max-width: 1023px) {
+  .skills-card-assembly-wrapper {
+    perspective: 1000px;
+  }
+  .skills-card-assembly-hidden-1 {
+    transform: perspective(1000px) translateX(-34px) translateY(12px) rotateY(12deg) scale(0.93);
+    transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+  }
+  .skills-card-assembly-hidden-2 {
+    transform: perspective(1000px) translateX(28px) translateY(-32px) rotateX(-10deg) rotateY(-8deg) scale(0.93);
+    transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+  }
+  .skills-card-assembly-hidden-3 {
+    transform: perspective(1000px) translateX(-26px) translateY(36px) rotateX(10deg) rotateY(8deg) scale(0.93);
+    transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+  }
+  .skills-card-assembly-hidden-4 {
+    transform: perspective(1000px) translateX(-28px) translateY(-30px) rotateX(-10deg) rotateY(8deg) scale(0.93);
+    transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+  }
+  .skills-card-assembly-hidden-5 {
+    transform: perspective(1000px) translateX(26px) translateY(38px) rotateX(10deg) rotateY(8deg) scale(0.93);
+    transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+  }
+  .skills-card-assembly-hidden-6 {
+    transform: perspective(1000px) translateX(32px) translateY(-12px) rotateY(-12deg) scale(0.93);
+    transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+  }
+}
+
+/* Compact Mobile Tuning (< 380px, e.g. 320px) */
+@media (max-width: 380px) {
+  .skills-card-assembly-hidden-1 {
+    transform: perspective(800px) translateX(-22px) translateY(10px) rotateY(10deg) scale(0.94);
+  }
+  .skills-card-assembly-hidden-2 {
+    transform: perspective(800px) translateX(20px) translateY(-26px) rotateX(-8deg) scale(0.94);
+  }
+  .skills-card-assembly-hidden-3 {
+    transform: perspective(800px) translateX(-18px) translateY(28px) rotateX(8deg) scale(0.94);
+  }
+  .skills-card-assembly-hidden-4 {
+    transform: perspective(800px) translateX(-20px) translateY(-24px) rotateX(-8deg) scale(0.94);
+  }
+  .skills-card-assembly-hidden-5 {
+    transform: perspective(800px) translateX(18px) translateY(30px) rotateX(8deg) scale(0.94);
+  }
+  .skills-card-assembly-hidden-6 {
+    transform: perspective(800px) translateX(22px) translateY(-10px) rotateY(-10deg) scale(0.94);
+  }
+}
+
+/* Motion OFF overrides for Skills assembly */
+.motion-reduce .skills-card-assembly-wrapper,
+[data-reduced-motion="true"] .skills-card-assembly-wrapper,
+.motion-reduce [class*="skills-card-assembly-hidden-"],
+[data-reduced-motion="true"] [class*="skills-card-assembly-hidden-"],
+.motion-reduce .skills-card-assembly-visible,
+[data-reduced-motion="true"] .skills-card-assembly-visible {
+  opacity: 1 !important;
+  transform: none !important;
+  transition: none !important;
+}
+
+/* ==========================================================================
+   Experience Timeline 3D Directional Assembly Entrance System
+   ========================================================================== */
+
+.exp-card-assembly-wrapper {
+  perspective: 1200px;
+  will-change: transform, opacity;
+  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Card 1: Left with subtle 3D Y-axis rotation */
+.exp-card-assembly-hidden-1 {
+  opacity: 0;
+  transform: perspective(1200px) translateX(-64px) translateY(10px) rotateY(16deg) scale(0.94);
+  transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+}
+
+/* Card 2: Upper-Right with perspective rotation */
+.exp-card-assembly-hidden-2 {
+  opacity: 0;
+  transform: perspective(1200px) translateX(56px) translateY(-48px) rotateX(-12deg) rotateY(-10deg) scale(0.94);
+  transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+}
+
+/* Card 3: Lower-Right with upward diagonal movement */
+.exp-card-assembly-hidden-3 {
+  opacity: 0;
+  transform: perspective(1200px) translateX(52px) translateY(54px) rotateX(12deg) rotateY(-8deg) scale(0.94);
+  transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+}
+
+/* Common Assembled / Settled State */
+.exp-card-assembly-visible {
+  opacity: 1;
+  transform: perspective(1200px) translateX(0) translateY(0) rotateX(0deg) rotateY(0deg) scale(1);
+  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Tablet & Mobile Stacked Layout Trajectories (< 1024px) */
+@media (max-width: 1023px) {
+  .exp-card-assembly-wrapper {
+    perspective: 1000px;
+  }
+  .exp-card-assembly-hidden-1 {
+    transform: perspective(1000px) translateX(-28px) translateY(12px) rotateY(10deg) scale(0.95);
+    transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+  }
+  .exp-card-assembly-hidden-2 {
+    transform: perspective(1000px) translateX(26px) translateY(-28px) rotateX(-8deg) rotateY(-6deg) scale(0.95);
+    transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+  }
+  .exp-card-assembly-hidden-3 {
+    transform: perspective(1000px) translateX(24px) translateY(32px) rotateX(8deg) rotateY(-6deg) scale(0.95);
+    transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+  }
+}
+
+/* Compact Mobile Tuning (< 380px, e.g. 320px) */
+@media (max-width: 380px) {
+  .exp-card-assembly-hidden-1 {
+    transform: perspective(800px) translateX(-18px) translateY(10px) rotateY(8deg) scale(0.96);
+  }
+  .exp-card-assembly-hidden-2 {
+    transform: perspective(800px) translateX(18px) translateY(-20px) rotateX(-6deg) scale(0.96);
+  }
+  .exp-card-assembly-hidden-3 {
+    transform: perspective(800px) translateX(16px) translateY(24px) rotateX(6deg) scale(0.96);
+  }
+}
+
+/* Motion OFF overrides for Experience assembly */
+.motion-reduce .exp-card-assembly-wrapper,
+[data-reduced-motion="true"] .exp-card-assembly-wrapper,
+.motion-reduce [class*="exp-card-assembly-hidden-"],
+[data-reduced-motion="true"] [class*="exp-card-assembly-hidden-"],
+.motion-reduce .exp-card-assembly-visible,
+[data-reduced-motion="true"] .exp-card-assembly-visible {
+  opacity: 1 !important;
+  transform: none !important;
+  transition: none !important;
+}
+
+/* ==========================================================================
+   Projects 4-Card 3D Directional Assembly Entrance System
+   ========================================================================== */
+
+.proj-card-assembly-wrapper {
+  perspective: 1200px;
+  will-change: transform, opacity;
+  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Card 1 (Top-Left): Upper-left convergent trajectory with 3D Y/X rotation */
+.proj-card-assembly-hidden-1 {
+  opacity: 0;
+  transform: perspective(1200px) translateX(-68px) translateY(-32px) rotateX(-10deg) rotateY(14deg) scale(0.92);
+  transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+}
+
+/* Card 2 (Top-Right): Upper-right convergent trajectory with opposing 3D rotation */
+.proj-card-assembly-hidden-2 {
+  opacity: 0;
+  transform: perspective(1200px) translateX(68px) translateY(-32px) rotateX(-10deg) rotateY(-14deg) scale(0.92);
+  transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+}
+
+/* Card 3 (Bottom-Left): Lower-left convergent trajectory with upward 3D movement */
+.proj-card-assembly-hidden-3 {
+  opacity: 0;
+  transform: perspective(1200px) translateX(-64px) translateY(48px) rotateX(12deg) rotateY(12deg) scale(0.92);
+  transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+}
+
+/* Card 4 (Bottom-Right): Lower-right convergent trajectory with upward 3D movement */
+.proj-card-assembly-hidden-4 {
+  opacity: 0;
+  transform: perspective(1200px) translateX(64px) translateY(48px) rotateX(12deg) rotateY(-12deg) scale(0.92);
+  transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+}
+
+/* Common Assembled / Settled State */
+.proj-card-assembly-visible {
+  opacity: 1;
+  transform: perspective(1200px) translateX(0) translateY(0) rotateX(0deg) rotateY(0deg) scale(1);
+  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Tablet & Mobile Stacked Layout Trajectories (< 1024px) */
+@media (max-width: 1023px) {
+  .proj-card-assembly-wrapper {
+    perspective: 1000px;
+  }
+  .proj-card-assembly-hidden-1 {
+    transform: perspective(1000px) translateX(-32px) translateY(10px) rotateY(10deg) scale(0.94);
+    transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+  }
+  .proj-card-assembly-hidden-2 {
+    transform: perspective(1000px) translateX(30px) translateY(-24px) rotateX(-8deg) rotateY(-8deg) scale(0.94);
+    transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+  }
+  .proj-card-assembly-hidden-3 {
+    transform: perspective(1000px) translateX(-28px) translateY(28px) rotateX(8deg) rotateY(8deg) scale(0.94);
+    transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+  }
+  .proj-card-assembly-hidden-4 {
+    transform: perspective(1000px) translateX(30px) translateY(12px) rotateY(-10deg) scale(0.94);
+    transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+  }
+}
+
+/* Compact Mobile Tuning (< 380px, e.g. 320px) */
+@media (max-width: 380px) {
+  .proj-card-assembly-hidden-1 {
+    transform: perspective(800px) translateX(-18px) translateY(8px) rotateY(8deg) scale(0.95);
+  }
+  .proj-card-assembly-hidden-2 {
+    transform: perspective(800px) translateX(18px) translateY(-18px) rotateX(-6deg) scale(0.95);
+  }
+  .proj-card-assembly-hidden-3 {
+    transform: perspective(800px) translateX(-16px) translateY(20px) rotateX(6deg) scale(0.95);
+  }
+  .proj-card-assembly-hidden-4 {
+    transform: perspective(800px) translateX(18px) translateY(10px) rotateY(-8deg) scale(0.95);
+  }
+}
+
+/* Motion OFF overrides for Projects assembly */
+.motion-reduce .proj-card-assembly-wrapper,
+[data-reduced-motion="true"] .proj-card-assembly-wrapper,
+.motion-reduce [class*="proj-card-assembly-hidden-"],
+[data-reduced-motion="true"] [class*="proj-card-assembly-hidden-"],
+.motion-reduce .proj-card-assembly-visible,
+[data-reduced-motion="true"] .proj-card-assembly-visible {
+  opacity: 1 !important;
+  transform: none !important;
+  transition: none !important;
+}
+
+/* ==========================================================================
+   Contact Section Elevated 3D Entrance & Ambient Utilities
+   ========================================================================== */
+
+.contact-card-assembly-wrapper {
+  perspective: 1200px;
+  will-change: transform, opacity;
+  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.contact-card-assembly-hidden-left {
+  opacity: 0;
+  transform: perspective(1200px) translateX(-50px) translateY(16px) rotateY(10deg) scale(0.95);
+  transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+}
+
+.contact-card-assembly-hidden-right {
+  opacity: 0;
+  transform: perspective(1200px) translateX(50px) translateY(16px) rotateY(-10deg) scale(0.95);
+  transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+}
+
+.contact-card-assembly-visible {
+  opacity: 1;
+  transform: perspective(1200px) translateX(0) translateY(0) rotateX(0deg) rotateY(0deg) scale(1);
+  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (max-width: 1023px) {
+  .contact-card-assembly-hidden-left,
+  .contact-card-assembly-hidden-right {
+    transform: perspective(800px) translateY(24px) scale(0.96);
+    transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+  }
+}
+
+/* Motion OFF overrides for Contact assembly */
+.motion-reduce .contact-card-assembly-wrapper,
+[data-reduced-motion="true"] .contact-card-assembly-wrapper,
+.motion-reduce .contact-card-assembly-hidden-left,
+[data-reduced-motion="true"] .contact-card-assembly-hidden-left,
+.motion-reduce .contact-card-assembly-hidden-right,
+[data-reduced-motion="true"] .contact-card-assembly-hidden-right,
+.motion-reduce .contact-card-assembly-visible,
+[data-reduced-motion="true"] .contact-card-assembly-visible {
+  opacity: 1 !important;
+  transform: none !important;
+  transition: none !important;
+}
+
+/* ==========================================================================
+   Certifications Showcase 3D Directional Assembly Entrance System
+   ========================================================================== */
+
+.cert-showcase-assembly-wrapper {
+  perspective: 1200px;
+  will-change: transform, opacity;
+  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.cert-showcase-assembly-hidden {
+  opacity: 0;
+  transform: perspective(1200px) translateY(48px) rotateX(8deg) scale(0.94);
+  transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+}
+
+.cert-showcase-assembly-visible {
+  opacity: 1;
+  transform: perspective(1200px) translateY(0) rotateX(0deg) scale(1);
+  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.cert-thumbnails-assembly-wrapper {
+  perspective: 1200px;
+  will-change: transform, opacity;
+  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.15s,
+              transform 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.15s;
+}
+
+.cert-thumbnails-assembly-hidden {
+  opacity: 0;
+  transform: perspective(1200px) translateY(32px) scale(0.96);
+  transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+}
+
+.cert-thumbnails-assembly-visible {
+  opacity: 1;
+  transform: perspective(1200px) translateY(0) scale(1);
+  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.15s,
+              transform 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.15s;
+}
+
+@media (max-width: 1023px) {
+  .cert-showcase-assembly-hidden {
+    transform: perspective(800px) translateY(28px) scale(0.96);
+    transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+  }
+  .cert-thumbnails-assembly-hidden {
+    transform: perspective(800px) translateY(20px) scale(0.97);
+    transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+  }
+}
+
+/* Motion OFF overrides for Certifications assembly */
+.motion-reduce .cert-showcase-assembly-wrapper,
+[data-reduced-motion="true"] .cert-showcase-assembly-wrapper,
+.motion-reduce .cert-showcase-assembly-hidden,
+[data-reduced-motion="true"] .cert-showcase-assembly-hidden,
+.motion-reduce .cert-showcase-assembly-visible,
+[data-reduced-motion="true"] .cert-showcase-assembly-visible,
+.motion-reduce .cert-thumbnails-assembly-wrapper,
+[data-reduced-motion="true"] .cert-thumbnails-assembly-wrapper,
+.motion-reduce .cert-thumbnails-assembly-hidden,
+[data-reduced-motion="true"] .cert-thumbnails-assembly-hidden,
+.motion-reduce .cert-thumbnails-assembly-visible,
+[data-reduced-motion="true"] .cert-thumbnails-assembly-visible {
+  opacity: 1 !important;
+  transform: none !important;
+  transition: none !important;
+}
+
+/* ==========================================================================
+   About Section 3D Directional Assembly Entrance System
+   ========================================================================== */
+
+.about-card-assembly-wrapper {
+  perspective: 1200px;
+  will-change: transform, opacity;
+  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.about-card-assembly-hidden-left {
+  opacity: 0;
+  transform: perspective(1200px) translateX(-48px) translateY(16px) rotateY(8deg) scale(0.96);
+  transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+}
+
+.about-card-assembly-hidden-right {
+  opacity: 0;
+  transform: perspective(1200px) translateX(48px) translateY(-16px) rotateY(-8deg) scale(0.96);
+  transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+}
+
+.about-card-assembly-hidden-bottom-left {
+  opacity: 0;
+  transform: perspective(1200px) translateX(-28px) translateY(36px) rotateX(6deg) scale(0.96);
+  transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+}
+
+.about-card-assembly-hidden-bottom-right {
+  opacity: 0;
+  transform: perspective(1200px) translateX(28px) translateY(36px) rotateX(6deg) scale(0.96);
+  transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+}
+
+.about-card-assembly-visible {
+  opacity: 1;
+  transform: perspective(1200px) translateX(0) translateY(0) rotateX(0deg) rotateY(0deg) scale(1);
+  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.about-card-assembly-visible.about-stagger-1 {
+  transition-delay: 0.12s;
+}
+
+.about-card-assembly-visible.about-stagger-2 {
+  transition-delay: 0.22s;
+}
+
+.about-card-assembly-visible.about-stagger-3 {
+  transition-delay: 0.32s;
+}
+
+@media (max-width: 1023px) {
+  .about-card-assembly-hidden-left,
+  .about-card-assembly-hidden-right,
+  .about-card-assembly-hidden-bottom-left,
+  .about-card-assembly-hidden-bottom-right {
+    transform: perspective(800px) translateY(24px) scale(0.97);
+    transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+  }
+}
+
+/* Motion OFF overrides for About assembly */
+.motion-reduce .about-card-assembly-wrapper,
+[data-reduced-motion="true"] .about-card-assembly-wrapper,
+.motion-reduce .about-card-assembly-hidden-left,
+[data-reduced-motion="true"] .about-card-assembly-hidden-left,
+.motion-reduce .about-card-assembly-hidden-right,
+[data-reduced-motion="true"] .about-card-assembly-hidden-right,
+.motion-reduce .about-card-assembly-hidden-bottom-left,
+[data-reduced-motion="true"] .about-card-assembly-hidden-bottom-left,
+.motion-reduce .about-card-assembly-hidden-bottom-right,
+[data-reduced-motion="true"] .about-card-assembly-hidden-bottom-right,
+.motion-reduce .about-card-assembly-visible,
+[data-reduced-motion="true"] .about-card-assembly-visible {
+  opacity: 1 !important;
+  transform: none !important;
+  transition: none !important;
+}
+
+
+
+
+

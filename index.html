@@ -1,38 +1,36 @@
 <!doctype html>
-<html lang="en" class="dark">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Divyanshu Gangwar | Computer Science &amp; Engineering Portfolio</title>
+    <title>Divyanshu Gangwar — Software Engineer &amp; CSE Student</title>
+    <meta name="description" content="Personal portfolio of Divyanshu Gangwar — B.Tech Computer Science &amp; Engineering student at Invertis University (2027). Open to developer roles and internships." />
     
-    <!-- Primary Metadata -->
-    <meta name="description" content="Personal portfolio of Divyanshu Gangwar — B.Tech Computer Science &amp; Engineering student at Invertis University. Showcasing full-stack MERN projects, frontend interfaces, and computational systems." />
-    <meta name="author" content="Divyanshu Gangwar" />
-    <meta name="theme-color" content="#0B0D0C" />
-    <meta name="color-scheme" content="dark" />
-
-    <!-- Open Graph Metadata -->
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="Divyanshu Gangwar | Computer Science &amp; Engineering Portfolio" />
-    <meta property="og:description" content="Personal portfolio of Divyanshu Gangwar — B.Tech Computer Science &amp; Engineering student at Invertis University. Showcasing full-stack MERN projects, frontend interfaces, and computational systems." />
-    <meta property="og:site_name" content="Divyanshu Gangwar Portfolio" />
-
-    <!-- Twitter Card Metadata -->
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:title" content="Divyanshu Gangwar | Computer Science &amp; Engineering Portfolio" />
-    <meta name="twitter:description" content="Personal portfolio of Divyanshu Gangwar — B.Tech Computer Science &amp; Engineering student at Invertis University. Showcasing full-stack MERN projects, frontend interfaces, and computational systems." />
-
-    <!-- Preconnect to Google Fonts -->
+    <!-- Google Fonts: Space Grotesk, JetBrains Mono, Manrope -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Manrope:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+    <!-- Immediate scroll restoration handling to ensure page always starts at Home on refresh -->
+    <script>
+      if ('scrollRestoration' in history) {
+        history.scrollRestoration = 'manual';
+      }
+      try {
+        var navEntries = performance.getEntriesByType('navigation');
+        var isReload = navEntries.length > 0 ? navEntries[0].type === 'reload' : (performance.navigation && performance.navigation.type === 1);
+        if (isReload) {
+          if (location.hash && location.hash !== '#home') {
+            history.replaceState(null, '', location.pathname + location.search);
+          }
+          window.scrollTo(0, 0);
+        }
+      } catch (e) {}
+    </script>
   </head>
-  <body class="bg-[#0B0D0C] text-[#F5F0E6] antialiased selection:bg-[#E5B45B]/20 selection:text-[#E5B45B]">
+  <body class="bg-[#090909] text-[#F4F5F0] antialiased selection:bg-neutral-800 selection:text-white">
     <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
+    <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
